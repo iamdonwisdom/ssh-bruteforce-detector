@@ -5,10 +5,12 @@ A Python-based cybersecurity tool that detects repeated failed SSH login attempt
 ## Features
 
 - Detects failed SSH login attempts
-- Extracts source IP addresses
-- Counts login attempts per IP
-- Classifies suspicious activity
-- Generates security alerts
+- Extracts source IP addresses from authentication logs
+- Classifies threats by severity levels (HIGH, MEDIUM, LOW)
+- Calculates attack statistics and login attempt counts
+- Identifies the highest offending IP address
+- Generates timestamped security reports automatically
+- Provides SOC-style security monitoring insights
 
 ## Technologies Used
 
