@@ -1,0 +1,9 @@
+SSH BRUTE-FORCE DETECTION REPORT
+===================================
+
+192.168.1.10 - 7 failed attempts
+10.0.0.5 - 3 failed attempts
+
+Total Failed Logins: 10
+Total Suspicious IPs: 2
+Highest Offender: 192.168.1.10 (7 attempts)

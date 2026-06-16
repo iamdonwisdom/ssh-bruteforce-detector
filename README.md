@@ -51,3 +51,7 @@ Total suspicious IPs: 2
 - Email alerts
 - CSV report export
 - Dashboard visualization
+
+## Screenshot
+
+![SSH Brute-Force Detector](screenshots/your-screenshot-name.png)

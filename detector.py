@@ -1,5 +1,9 @@
-
 from collections import Counter
+from datetime import datetime
+
+HIGH_THRESHOLD = 7
+MEDIUM_THRESHOLD = 5
+LOW_THRESHOLD = 3
 
 ip_counts = Counter()
 
@@ -12,30 +16,38 @@ with open("auth.log", "r") as file:
                 ip = parts[parts.index("from") + 1]
                 ip_counts[ip] += 1
 
+print(f"\nScan Time: {datetime.now()}")
+
 print("\n===== SSH BRUTE-FORCE DETECTOR =====\n")
 
 for ip, attempts in ip_counts.items():
 
-    if attempts >= 5:
+    if attempts >= HIGH_THRESHOLD:
         print(f"[ALERT] {ip} → {attempts} attempts → HIGH 🔴")
 
-    elif attempts >= 3:
+    elif attempts >= MEDIUM_THRESHOLD:
         print(f"[WARNING] {ip} → {attempts} attempts → MEDIUM 🟠")
 
-print("\n===== SUMMARY =====")
-print(f"Total suspicious IPs: {len(ip_counts)}")
+    elif attempts >= LOW_THRESHOLD:
+        print(f"[NOTICE] {ip} → {attempts} attempts → LOW 🟡")
 
-from collections import Counter
-
-print("""
-====================================
-     SSH BRUTE-FORCE DETECTOR
-====================================
-""")
-
-ip_counts = Counter()
 total_attempts = sum(ip_counts.values())
 
+highest_ip = max(ip_counts, key=ip_counts.get)
+highest_attempts = ip_counts[highest_ip]
+
 print("\n===== SUMMARY =====")
-print(f"Total failed logins: {total_attempts}")
-print(f"Total suspicious IPs: {len(ip_counts)}")
+print(f"Total Failed Logins: {total_attempts}")
+print(f"Total Suspicious IPs: {len(ip_counts)}")
+print(f"Highest Offender: {highest_ip} ({highest_attempts} attempts)")
+
+with open("report.txt", "w") as report:
+    report.write("SSH BRUTE-FORCE DETECTION REPORT\n")
+    report.write("=" * 35 + "\n\n")
+
+    for ip, attempts in ip_counts.items():
+        report.write(f"{ip} - {attempts} failed attempts\n")
+
+    report.write(f"\nTotal Failed Logins: {total_attempts}")
+    report.write(f"\nTotal Suspicious IPs: {len(ip_counts)}")
+    report.write(f"\nHighest Offender: {highest_ip} ({highest_attempts} attempts)")
