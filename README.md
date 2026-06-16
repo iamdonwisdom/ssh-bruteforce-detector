@@ -1,9 +1,8 @@
 # SSH Brute-Force Detector
 
-A Python-based cybersecurity tool that detects repeated failed SSH login attempts from authentication logs.
+Python-based SSH brute-force detection tool for authentication log analysis and SOC-style threat monitoring.
 
 ## Features
-
 - Detects failed SSH login attempts
 - Extracts source IP addresses from authentication logs
 - Classifies threats by severity levels (HIGH, MEDIUM, LOW)
